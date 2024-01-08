@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud.Insert;
 
-public class FirstJdbc {
+public class Update{
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Scanner sc=new Scanner(System.in);
 
@@ -18,26 +18,16 @@ public class FirstJdbc {
 		Statement st=con.createStatement();
 		//	st.execute("create table family( name varchar(20),age int(3),rollNo int(4))");
 
-		PreparedStatement ptst=con.prepareStatement("insert into family(name,age,rollNo)values(?,?,?)");
+		PreparedStatement ptst=con.prepareStatement("update family set name=? where age=?");
 		System.out.println("Enter name: ");
 		String name=sc.next();
 
 		System.out.println("Enter age: ");
 		int age=sc.nextInt();
 
-		System.out.println("Enter rollNo: ");
-		int roll=sc.nextInt();
-
+		
 		ptst.setString(1, name);
 		ptst.setInt(2, age);
-		ptst.setInt(3, roll);
-
-		con.prepareStatement("update family set name=?, where age=21");
-		ptst.setString(1, "Niral");
-
-
-
-
 		ptst.executeUpdate();
 	}
 }
